@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  spark-history-server:
+    image: rangareddy1988/spark-history-server:latest
+    container_name: spark-history-server
+    ports:
+      - "18080:18080"
+    volumes:
+      - "C:/Users/34439/Joplin/logs:/tmp/spark/spark-events"
+      - "C:/Users/34439/Joplin/logs:/tmp/spark/spark-history-server-logs"
+    environment:
+      - SPARK_HISTORY_FS_LOG_DIRECTORY=/tmp/spark/spark-events
+      - SPARK_HISTORY_FS_CLEANER_ENABLED=true
+      - SPARK_HISTORY_FS_CLEANER_INTERVAL=1d
+      - SPARK_HISTORY_FS_CLEANER_MAXAGE=7d
+      - SPARK_HISTORY_RETAINEDAPPLICATIONS=100
+      - SPARK_HISTORY_UI_MAXAPPLICATIONS=100
+      - SPARK_HISTORY_UI_PORT=18080
+      - SPARK_HISTORY_FS_UPDATE_INTERVAL=10s
+      - SPARK_HISTORY_STORE_MAXDISKUSAGE=0.9
+      - SPARK_EVENTLOG_ENABLED=true
+      - SPARK_EVENT_LOG_DIR=/tmp/spark/spark-events
+      - SPARK_LOG_DIR=/tmp/spark/spark-history-server-logs
+      - SPARK_DAEMON_MEMORY=1g

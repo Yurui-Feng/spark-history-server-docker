@@ -6,6 +6,21 @@
 
 This Docker image is designed to simplify the process of troubleshooting Spark applications by allowing you to locally upload and examine event logs.
 
+#### For "Frugality" as spinning up EMR will cost Bezo's money
+
+Added Windows start script to run the Spark History Server.
+
+#### Please check the docker-compose.yml file for the configuration:
+
+The Spark History Server is configured to use the following volumes:
+Modify the first volume path to the path of your Spark event logs.
+
+```
+    volumes:
+      - "C:/Users/34439/Joplin/logs:/tmp/spark/spark-events"
+      - "C:/Users/34439/Joplin/logs:/tmp/spark/spark-history-server-logs"
+```
+
 ### Step1: Set the Spark Version
 
 By default Spark version is `3.5.0`, but you can change it by exporting the below variable with your preferred version.
